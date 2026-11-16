@@ -63,6 +63,8 @@ export function SiteFooter() {
             <li><Link href="/solutions" className="hover:underline">Solutions</Link></li>
             <li><Link href="/security" className="hover:underline">Security</Link></li>
             <li><Link href="/pricing" className="hover:underline">Pricing</Link></li>
+            <li><Link href="/docs" className="hover:underline">API documentation</Link></li>
+            <li><Link href="/glossary" className="hover:underline">Glossary</Link></li>
           </ul>
         </div>
         <div>

@@ -158,6 +158,79 @@ export default function Home() {
         </div>
       </section>
 
+
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-medium sm:text-4xl">Before and after FraudFenceAI</h2>
+          <p className="mt-3 text-ink-soft">What changes when screening, investigation and compliance share one system.</p>
+        </div>
+        <div className="mt-10 overflow-hidden rounded-2xl border border-line">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-mist/60"><tr><th className="th">Area</th><th className="th">Fragmented tools</th><th className="th">FraudFenceAI</th></tr></thead>
+            <tbody className="divide-y divide-line">
+              {[
+                ["Decisioning", "Static rules in code, changed by engineers", "Scoring plus rules your risk team edits directly"],
+                ["Investigation", "Analysts gather evidence across systems", "AI assessment built from the case record"],
+                ["Compliance evidence", "Screenshots and spreadsheets", "Stored signals, notes and status history per case"],
+                ["Customer view", "Separate fraud and KYC profiles", "One risk tier combining behavior, jurisdiction and screening"],
+                ["Network risk", "Found after losses occur", "Shared device, email and IP clusters surfaced continuously"],
+              ].map(([a, b, c]) => (<tr key={a}><td className="td font-medium">{a}</td><td className="td text-ink-soft">{b}</td><td className="td">{c}</td></tr>))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-mist/50">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-medium sm:text-4xl">Every role in the risk organization, covered</h2>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["Fraud analysts", "Work a prioritized queue with the evidence and an AI assessment already prepared."],
+              ["Compliance officers", "Screen names against your lists, rate customers and keep a documented case trail."],
+              ["Heads of risk", "Track decisions, flagged volume and open cases, and tune thresholds to risk appetite."],
+              ["Engineering teams", "Integrate one API call, receive a decision with reasons and ship without building a rules system."],
+            ].map(([t, b]) => (<div key={t} className="card p-6"><h3 className="text-lg font-medium">{t}</h3><p className="mt-2 text-sm leading-relaxed text-ink-soft">{b}</p></div>))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-medium sm:text-4xl">From signup to live decisions</h2>
+          <p className="mt-3 text-ink-soft">A deployment path designed for teams without a long implementation project.</p>
+        </div>
+        <ol className="mt-12 grid gap-5 md:grid-cols-4">
+          {[
+            ["Day 1", "Create your account, set review and decline thresholds, and import your watchlists."],
+            ["Day 1 to 2", "Encode your policy as custom rules and screen a CSV of historical transactions to calibrate."],
+            ["Week 1", "Connect the API to your payment flow and route flagged activity into cases."],
+            ["Ongoing", "Use AI investigations and customer risk tiers to refine rules as patterns change."],
+          ].map(([t, b]) => (<li key={t} className="card p-6"><p className="font-display text-sm font-medium text-mint-deep">{t}</p><p className="mt-2 text-sm leading-relaxed text-ink-soft">{b}</p></li>))}
+        </ol>
+      </section>
+
+      <section className="bg-mist/50">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-medium sm:text-4xl">Signals evaluated on every transaction</h2>
+            <p className="mt-3 text-ink-soft">Defined, documented and visible in every decision.</p>
+          </div>
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {["Transaction velocity per hour and day","Amount against customer average","Large first transactions","Card-testing patterns","IP and billing country mismatch","High-risk and elevated-risk jurisdictions","Shared devices across customers","Shared emails across customers","Disposable email domains","Blocked emails, devices and IPs","Sanctions and PEP screening results","Time-of-day and round-amount patterns"].map((x) => (<div key={x} className="rounded-xl border border-line bg-white px-4 py-3 text-sm">{x}</div>))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-medium sm:text-4xl">Plans for every stage of growth</h2>
+          <p className="mt-3 text-ink-soft">Starter at $47, Growth at $57 and Scale at $97 per month, each with the full workspace and the AI investigator.</p>
+          <Link href="/pricing" className="mt-6 inline-block text-sm font-medium underline">Compare plans</Link>
+        </div>
+      </section>
+
       <section className="bg-ink text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2">
           <div>
