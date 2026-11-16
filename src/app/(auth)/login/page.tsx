@@ -10,13 +10,11 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <AuthShell
       title="Welcome back"
-      subtitle="Log in to your risk workspace."
-      footer={<>New here? <Link href="/signup" className="font-medium text-ink underline">Start a free trial</Link></>}
+      subtitle="Log in to your FraudFenceAI workspace."
+      footer={<>New to FraudFenceAI? <Link href="/signup" className="font-medium text-ink underline">Sign up</Link></>}
     >
       {sp.setup && (
-        <p className="mb-4 rounded-xl bg-amber-50 px-3.5 py-2.5 text-sm text-warn">
-          Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY (see .env.example).
-        </p>
+        <p className="mb-4 rounded-xl bg-amber-50 px-3.5 py-2.5 text-sm text-warn">Sign-in is temporarily unavailable. Please try again shortly.</p>
       )}
       {sp.error && <p className="mb-4 rounded-xl bg-red-50 px-3.5 py-2.5 text-sm text-danger">
         {sp.error === "link-expired" ? "That link has expired. Request a new one." : "Your account has no organization. Contact support."}

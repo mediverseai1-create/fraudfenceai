@@ -65,7 +65,7 @@ export default async function Transactions({ searchParams }: { searchParams: Pro
                 {txs.map((t) => (
                   <tr key={t.id} className="align-top">
                     <td className="td text-ink-mute">{when(t.created_at)}</td>
-                    <td className="td">{t.customer_ref ?? "—"}</td>
+                    <td className="td">{t.customer_ref ?? "-"}</td>
                     <td className="td">{money(t.amount, t.currency)}</td>
                     <td className="td capitalize">{t.channel}</td>
                     <td className="td">

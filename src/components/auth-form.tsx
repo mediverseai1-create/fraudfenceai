@@ -14,9 +14,10 @@ export function LoginForm({ next }: { next?: string }) {
   );
 }
 
-export function SignupForm() {
+export function SignupForm({ plan }: { plan?: string }) {
   return (
     <ActionForm action={signup}>
+      <input type="hidden" name="plan" value={plan ?? ""} />
       <Field label="Company name" name="company" placeholder="Acme Payments" maxLength={120} />
       <Field label="Work email" name="email" type="email" required />
       <Field label="Password" name="password" type="password" required hint="At least 8 characters." />

@@ -3,16 +3,17 @@ import Link from "next/link";
 import { AuthShell } from "@/components/auth-shell";
 import { SignupForm } from "@/components/auth-form";
 
-export const metadata: Metadata = { title: "Start free trial" };
+export const metadata: Metadata = { title: "Sign up" };
 
-export default function SignupPage() {
+export default async function SignupPage({ searchParams }: { searchParams: Promise<{ plan?: string }> }) {
+  const { plan } = await searchParams;
   return (
     <AuthShell
-      title="Start your 14-day trial"
-      subtitle="No card needed. 100 screenings and 5 AI investigations included."
+      title="Create your account"
+      subtitle="14-day trial with 100 screenings and 5 AI investigations. No card required."
       footer={<>Already have an account? <Link href="/login" className="font-medium text-ink underline">Log in</Link></>}
     >
-      <SignupForm />
+      <SignupForm plan={plan} />
     </AuthShell>
   );
 }

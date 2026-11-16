@@ -32,9 +32,9 @@ export default async function Customers() {
                 {customers.map((c) => (
                   <tr key={c.id}>
                     <td className="td font-medium">{c.ref}</td>
-                    <td className="td">{c.name ?? "—"}</td>
-                    <td className="td">{c.country ?? "—"}</td>
-                    <td className="td text-xs">{[c.sanctions_hit && "Sanctions match", c.is_pep && "PEP"].filter(Boolean).join(", ") || "—"}</td>
+                    <td className="td">{c.name ?? "-"}</td>
+                    <td className="td">{c.country ?? "-"}</td>
+                    <td className="td text-xs">{[c.sanctions_hit && "Sanctions match", c.is_pep && "PEP"].filter(Boolean).join(", ") || "-"}</td>
                     <td className="td">{c.risk_score}</td>
                     <td className="td"><LevelBadge level={c.risk_level} /></td>
                   </tr>

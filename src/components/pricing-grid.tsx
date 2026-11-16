@@ -30,11 +30,11 @@ export function PricingGrid({ current, checkout = false }: { current?: PlanId; c
               <span className="btn-light mt-7 cursor-default">Current plan</span>
             ) : checkout ? (
               <a href={p.checkoutUrl} target="_blank" rel="noopener noreferrer" className={`${featured ? "btn-dark" : "btn-light"} mt-7`}>
-                Choose {p.name}
+                Pay for {p.name}
               </a>
             ) : (
               <Link href={`/signup?plan=${id}`} className={`${featured ? "btn-dark" : "btn-light"} mt-7`}>
-                Start with {p.name}
+                Sign up
               </Link>
             )}
           </div>

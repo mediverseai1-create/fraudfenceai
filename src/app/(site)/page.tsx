@@ -1,13 +1,43 @@
 import Link from "next/link";
-import { ArrowRight, Bot, Network, ScanSearch, ShieldCheck, SlidersHorizontal, Users } from "lucide-react";
+import { ArrowRight, Bot, Building2, Landmark, Network, ScanSearch, ShieldCheck, ShoppingCart, SlidersHorizontal, Store, Users, Wallet } from "lucide-react";
+
+const outcomes = [
+  { k: "Lower fraud losses", v: "Every payment is scored against velocity, geography, device and identity signals before money moves, so high-risk activity is stopped at the point of payment." },
+  { k: "Higher approval rates", v: "Transparent scoring separates risky activity from legitimate customers, so good transactions are approved instead of blocked by blunt rules." },
+  { k: "A smaller review backlog", v: "The AI investigator reads each flagged case, summarizes the evidence and recommends the next action, so analysts start from a conclusion instead of a blank screen." },
+  { k: "Audit-ready decisions", v: "Each decision records the exact signals and points behind it. Compliance teams can explain any outcome to a regulator, a partner bank or a customer." },
+];
+
+const steps = [
+  { n: "01", t: "Ingest", b: "Send transactions through the REST API, a CSV import or the workspace. Each record carries amount, channel, device, network and customer context." },
+  { n: "02", t: "Score", b: "A deterministic engine evaluates built-in fraud signals and your own rules, then returns a 0 to 100 score with approve, review or decline." },
+  { n: "03", t: "Investigate", b: "Flagged activity opens a case. The AI investigator analyzes the evidence, assesses likelihood of fraud and recommends a course of action." },
+  { n: "04", t: "Resolve", b: "Analysts confirm, document and close. Outcomes feed customer risk tiers, so the next decision starts with better context." },
+];
 
 const modules = [
-  { icon: ScanSearch, title: "Transaction screening", body: "Every payment gets a 0-100 risk score, a decision and the exact signals behind it. Use the dashboard, CSV import or the REST API." },
-  { icon: SlidersHorizontal, title: "Rules engine", body: "Write your own rules on amount, velocity, geography and more. Choose whether a match flags, forces review or declines." },
-  { icon: Users, title: "Customer risk rating", body: "Customers are tiered low, medium or high from jurisdiction, PEP status, sanctions hits and their own transaction history." },
-  { icon: ShieldCheck, title: "Watchlists and sanctions", body: "Upload your sanctions, PEP and blocklist files. Fuzzy name matching catches spelling variants and reordered names." },
-  { icon: Bot, title: "AI case investigator", body: "Open a case and get a structured summary, recommended action and next steps, written from your real evidence." },
-  { icon: Network, title: "Connections graph", body: "See customers who share devices, emails or IP addresses, the pattern behind multi-accounting and fraud rings." },
+  { icon: ScanSearch, title: "Real-time transaction screening", body: "Score card, ACH, wire, P2P and crypto payments in one call. Velocity, amount anomalies, geography, device and email linkage, and blocklists run on every transaction." },
+  { icon: Bot, title: "AI case investigator", body: "Structured assessments built only from recorded evidence: a summary, key indicators, a recommended action and the caveats that matter, validated against a fixed format." },
+  { icon: SlidersHorizontal, title: "Rules engine", body: "Encode policy as rules on amount, velocity, jurisdiction and more. Choose whether a match adds risk, forces review or declines outright." },
+  { icon: Users, title: "Customer risk rating", body: "Tier every customer low, medium or high from jurisdiction, PEP status, sanctions hits and their own transaction behavior, with the factors listed." },
+  { icon: ShieldCheck, title: "Watchlists and sanctions screening", body: "Import your sanctions, PEP and blocklist data. Fuzzy name matching catches transliteration and reordered names, and flags matching customers automatically." },
+  { icon: Network, title: "Connections graph", body: "Expose clusters of customers who share devices, emails or IP addresses. This is the pattern behind multi-accounting, mule networks and coordinated fraud rings." },
+];
+
+const audiences = [
+  { icon: Wallet, t: "Payment processors", b: "Screen merchant and cardholder activity in real time and protect interchange margin." },
+  { icon: Landmark, t: "Fintechs and neobanks", b: "Control account fraud, money mules and first-party abuse across onboarding and payments." },
+  { icon: Store, t: "Marketplaces", b: "Detect fake sellers, collusion and multi-accounting before payouts leave the platform." },
+  { icon: ShoppingCart, t: "Merchants and e-commerce", b: "Cut chargebacks and card testing while keeping checkout conversion high." },
+  { icon: Building2, t: "Lenders and BNPL", b: "Catch synthetic identities and bust-out behavior before credit is extended." },
+];
+
+const faqs = [
+  ["What does the AI actually do?", "The AI investigator analyzes each flagged case from its recorded evidence and returns a structured assessment, a recommended action and next steps. It explains and accelerates decisions. The risk score itself comes from a deterministic engine, which keeps every outcome auditable."],
+  ["Why is the score not generated by AI?", "Regulators, partner banks and card networks expect decisions that can be reproduced and explained. FraudFenceAI computes scores from defined signals and your rules, and uses AI where it adds the most value: investigation, summarization and prioritization."],
+  ["Does FraudFenceAI include sanctions data?", "No government list is bundled. You import the sanctions, PEP and internal blocklist files your compliance program relies on, and the platform screens customers against them."],
+  ["How do we integrate?", "Use the REST API to screen transactions in real time, or import CSV files into the workspace. API access is included on the Growth and Scale plans."],
+  ["How is customer data separated?", "Every organization's data is isolated with row-level security in the database. API keys are stored hashed, and plan and billing fields cannot be altered from the client."],
 ];
 
 export default function Home() {
@@ -16,27 +46,59 @@ export default function Home() {
       <section className="hero-bg">
         <div className="mx-auto max-w-6xl px-5 pb-20 pt-20 text-center md:pt-28">
           <p className="mx-auto mb-6 inline-flex rounded-full border border-line bg-white px-3.5 py-1 text-xs font-medium text-ink-soft">
-            Fraud prevention and AML for lean risk teams
+            The AI-native platform for fraud prevention and AML operations
           </p>
-          <h1 className="mx-auto max-w-3xl text-[40px] font-medium leading-[1.05] text-ink-mute sm:text-6xl">
-            Stop fraud at the <span className="text-ink">point of payment,</span> not after the loss
+          <h1 className="mx-auto max-w-4xl text-[40px] font-medium leading-[1.05] text-ink-mute sm:text-6xl">
+            AI that investigates every risk signal <span className="text-ink">and decides what happens next</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-ink-soft">
-            FraudFenceAI scores every transaction with transparent, auditable logic, opens cases for what needs a human,
-            and uses AI to help analysts reach a decision faster.
+            FraudFenceAI scores every transaction in real time, analyzes every flagged case with AI, and automates the investigation work that slows risk teams down. Lower losses, faster approvals and a decision trail you can defend.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/signup" className="btn-dark">Start 14-day trial <ArrowRight size={16} /></Link>
-            <Link href="/products" className="btn-light">Explore the platform</Link>
+            <Link href="/signup" className="btn-dark">Sign up <ArrowRight size={16} /></Link>
+            <Link href="/login" className="btn-light">Log in</Link>
           </div>
-          <p className="mt-4 text-xs text-ink-mute">No card needed to start. Plans from $47 per month.</p>
+          <p className="mt-4 text-xs text-ink-mute">14-day trial. Paid plans from $47 per month.</p>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-medium sm:text-4xl">One workspace for the whole risk workflow</h2>
-          <p className="mt-3 text-ink-soft">Modules that share the same data, so a flagged payment, its customer and its case stay connected.</p>
+          <h2 className="text-3xl font-medium sm:text-4xl">Built for the outcomes risk leaders are measured on</h2>
+          <p className="mt-3 text-ink-soft">Four results, each tied to a specific mechanism in the platform.</p>
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+          {outcomes.map((o) => (
+            <div key={o.k} className="card p-7">
+              <h3 className="text-xl font-medium">{o.k}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{o.v}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-mist/50">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-medium sm:text-4xl">From first signal to closed case in one workflow</h2>
+            <p className="mt-3 text-ink-soft">Screening, investigation and resolution share one data model, so context is never lost between tools.</p>
+          </div>
+          <ol className="mt-12 grid gap-5 md:grid-cols-4">
+            {steps.map((s) => (
+              <li key={s.n} className="card p-6">
+                <p className="font-display text-sm font-medium text-mint-deep">{s.n}</p>
+                <h3 className="mt-2 text-lg font-medium">{s.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.b}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-medium sm:text-4xl">One platform for the entire risk operation</h2>
+          <p className="mt-3 text-ink-soft">Replace disconnected scoring tools, spreadsheets and ticket queues with a single system of record.</p>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {modules.map((m) => (
@@ -52,38 +114,113 @@ export default function Home() {
       <section className="bg-mist/50">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-medium sm:text-4xl">Numbers from code. Explanations from AI.</h2>
+            <h2 className="text-3xl font-medium sm:text-4xl">AI for the judgment work. Code for the numbers.</h2>
             <p className="mt-4 text-ink-soft">
-              Risk scores, velocity counts and customer tiers are computed by deterministic rules you can inspect, so every decision can be explained to an auditor.
-              The AI investigator reads that evidence and writes the narrative. It never changes the score.
+              Scores, velocity counts and customer tiers are computed by defined logic, so every decision is reproducible. The AI investigator takes over the work that consumes analyst hours: reading the evidence, weighing the indicators, drafting the assessment and recommending the next step.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ink-soft">
-              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-deep" />Each decision lists the signals and points that produced it.</li>
-              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-deep" />AI output is validated against a fixed format and labelled as advisory.</li>
-              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-deep" />Your data is isolated per organization with row-level security.</li>
+              <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-deep" />Each decision lists the signals and points that produced it.</li>
+              <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-deep" />AI output is constrained to a fixed schema and drawn only from recorded evidence.</li>
+              <li className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-deep" />Analysts keep the final call, with notes and status history on every case.</li>
             </ul>
           </div>
           <div className="card p-6" aria-label="Illustrative example of an explained decision">
             <p className="text-xs font-medium uppercase tracking-wide text-ink-mute">Illustrative example</p>
             <div className="mt-3 flex items-baseline justify-between">
               <p className="font-display text-xl">USD 1,800.00 · card</p>
-              <span className="badge bg-red-50 text-danger">Decline · 82</span>
+              <span className="badge bg-red-50 text-danger">Decline · 90</span>
             </div>
             <ul className="mt-4 divide-y divide-line text-sm">
-              {[["Amount is 12.0x this customer's average", 35], ["Device shared with 3 other customers", 35], ["IP country (RU) differs from billing country (US)", 20], ["Disposable email domain", 25]].map(([l, p]) => (
-                <li key={l as string} className="flex justify-between py-2.5"><span>{l}</span><span className="font-medium text-ink-soft">+{p}</span></li>
+              {[["Amount is 12.0x this customer's average", 35], ["Device shared with 3 other customers", 35], ["IP country (RU) differs from billing country (US)", 20]].map(([l, p]) => (
+                <li key={l as string} className="flex justify-between gap-4 py-2.5"><span>{l}</span><span className="font-medium text-ink-soft">+{p}</span></li>
               ))}
             </ul>
+            <p className="mt-4 rounded-xl bg-mist/70 p-3 text-xs leading-relaxed text-ink-soft">
+              AI assessment: multiple independent indicators point to account sharing and identity mismatch. Recommended action: decline and request verification.
+            </p>
           </div>
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-medium sm:text-4xl">Designed for teams that move money</h2>
+          <p className="mt-3 text-ink-soft">Risk, fraud and compliance teams across the payments ecosystem.</p>
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {audiences.map((a) => (
+            <div key={a.t} className="card p-6">
+              <a.icon size={20} className="text-mint-deep" />
+              <h3 className="mt-3 text-lg font-medium">{a.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{a.b}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-ink text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-medium sm:text-4xl">Decisions in your flow, in one API call</h2>
+            <p className="mt-4 text-white/70">Send a transaction, receive a decision, a score and the reasons behind it. Flagged activity opens a case automatically, ready for AI investigation.</p>
+            <ul className="mt-6 space-y-2 text-sm text-white/80">
+              <li>Bearer-token authentication with hashed keys</li>
+              <li>Structured reasons returned with every response</li>
+              <li>Included on the Growth and Scale plans</li>
+            </ul>
+          </div>
+          <pre className="overflow-x-auto rounded-2xl bg-white/10 p-5 text-xs leading-relaxed text-white/90">{`POST /api/v1/screen
+{
+  "amount": 1800,
+  "currency": "USD",
+  "channel": "card",
+  "customer_ref": "cus_1042",
+  "device_id": "dev_8f2a",
+  "ip_country": "RU",
+  "billing_country": "US"
+}
+
+-> { "decision": "review", "risk_score": 60,
+     "reasons": [ ... ], "case_id": "..." }`}</pre>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="grid gap-10 md:grid-cols-3">
+          <div>
+            <h2 className="text-3xl font-medium">Governance built into the platform</h2>
+            <p className="mt-3 text-sm text-ink-soft">Controls that risk, security and compliance reviewers look for.</p>
+          </div>
+          <div className="grid gap-5 md:col-span-2 sm:grid-cols-2">
+            {[
+              ["Tenant isolation", "Row-level security keeps each organization's data separate at the database layer."],
+              ["Reproducible decisions", "Defined signals and your own rules produce the same score for the same inputs."],
+              ["Controlled AI", "AI output is validated against a fixed schema and labeled as advisory in the workspace."],
+              ["Protected billing", "Plan and subscription fields can only be changed by the verified billing system."],
+            ].map(([t, b]) => (
+              <div key={t} className="card p-5"><h3 className="font-medium">{t}</h3><p className="mt-1.5 text-sm text-ink-soft">{b}</p></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-mist/50">
+        <div className="mx-auto max-w-3xl px-5 py-20">
+          <h2 className="text-3xl font-medium sm:text-4xl">Questions from risk and compliance leaders</h2>
+          <dl className="mt-8 divide-y divide-line">
+            {faqs.map(([q, a]) => (
+              <div key={q} className="py-5"><dt className="font-medium">{q}</dt><dd className="mt-1.5 text-sm leading-relaxed text-ink-soft">{a}</dd></div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-20 text-center">
-        <h2 className="text-3xl font-medium sm:text-4xl">Start screening in minutes</h2>
-        <p className="mx-auto mt-3 max-w-xl text-ink-soft">Create an account, add a rule or two, and run your first transactions through the screening engine.</p>
+        <h2 className="text-3xl font-medium sm:text-4xl">Put AI at the center of your risk operation</h2>
+        <p className="mx-auto mt-3 max-w-xl text-ink-soft">Create an account, screen your first transactions and watch the investigator work through your flagged cases.</p>
         <div className="mt-8 flex justify-center gap-3">
-          <Link href="/signup" className="btn-dark">Start free trial</Link>
-          <Link href="/pricing" className="btn-light">View pricing</Link>
+          <Link href="/signup" className="btn-dark">Sign up</Link>
+          <Link href="/login" className="btn-light">Log in</Link>
         </div>
       </section>
     </>

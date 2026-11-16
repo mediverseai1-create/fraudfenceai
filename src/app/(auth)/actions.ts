@@ -44,7 +44,7 @@ export async function signup(_: FormState, form: FormData): Promise<FormState> {
   });
   if (error) return { error: error.message };
   if (!data.session) return { message: "Check your inbox to confirm your email, then log in." };
-  redirect("/app");
+  redirect(["starter", "growth", "scale"].includes(String(form.get("plan"))) ? "/app/billing" : "/app");
 }
 
 export async function forgotPassword(_: FormState, form: FormData): Promise<FormState> {

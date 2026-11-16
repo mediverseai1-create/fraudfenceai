@@ -42,27 +42,30 @@ export class AiError extends Error {
 export async function investigate(evidence: unknown): Promise<Investigation> {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new AiError("AI is not configured (GEMINI_API_KEY missing).", 503);
-  const model = process.env.GEMINI_MODEL || "gemini-3.8-flash";
+  const models = [...new Set([process.env.GEMINI_MODEL, "gemini-3.5-flash", "gemini-3.1-flash-lite"].filter(Boolean) as string[])];
 
-  const call = () =>
+  const call = (model: string) =>
     fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": key },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM }] },
         contents: [{ role: "user", parts: [{ text: `evidence:\n${JSON.stringify(evidence)}` }] }],
-        generationConfig: { responseMimeType: "application/json", responseSchema, temperature: 0.2, maxOutputTokens: 1500 },
+        generationConfig: { responseMimeType: "application/json", responseSchema, temperature: 0.2, maxOutputTokens: 4000 },
       }),
-      signal: AbortSignal.timeout(30_000),
+      signal: AbortSignal.timeout(20_000),
     });
-  let res = await call().catch((e) => {
-    throw new AiError(`AI request failed: ${e instanceof Error ? e.message : "network error"}`);
-  });
-  if (res.status === 503) {
-    await new Promise((r) => setTimeout(r, 1500));
-    res = await call().catch(() => res);
+  let res: Response | null = null;
+  for (const m of models) {
+    try {
+      res = await call(m);
+    } catch {
+      continue; // timeout or network error: try the next model
+    }
+    if (res.status !== 503 && res.status !== 404) break;
   }
-  if (res.status === 503) throw new AiError("The AI provider is busy. Try again in a minute.", 503);
+  if (!res) throw new AiError("The AI provider could not be reached. Try again shortly.", 503);
+  if (res.status === 503 || res.status === 404) throw new AiError("The AI provider is busy. Try again in a minute.", 503);
 
   if (res.status === 429) throw new AiError("The AI provider rate limit was reached. Try again shortly.", 429);
   if (!res.ok) throw new AiError(`AI provider returned ${res.status}.`);

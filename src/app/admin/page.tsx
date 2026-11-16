@@ -43,7 +43,7 @@ export default async function Admin() {
           <thead className="border-y border-line bg-mist/50"><tr><th className="th">When</th><th className="th">Email</th><th className="th">Amount</th><th className="th">Plan</th><th className="th">Status</th></tr></thead>
           <tbody className="divide-y divide-line">
             {(payments ?? []).map((p) => (
-              <tr key={p.id}><td className="td text-ink-mute">{when(p.created_at)}</td><td className="td">{p.email ?? "—"}</td><td className="td">{p.amount ?? "—"}</td><td className="td capitalize">{p.plan ?? "—"}</td><td className="td capitalize">{p.status}</td></tr>
+              <tr key={p.id}><td className="td text-ink-mute">{when(p.created_at)}</td><td className="td">{p.email ?? "-"}</td><td className="td">{p.amount ?? "-"}</td><td className="td capitalize">{p.plan ?? "-"}</td><td className="td capitalize">{p.status}</td></tr>
             ))}
             {!payments?.length && <tr><td className="td text-ink-soft" colSpan={5}>No payment events yet.</td></tr>}
           </tbody>

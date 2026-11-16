@@ -13,7 +13,7 @@ export function Logo({ href = "/" }: { href?: string }) {
   return (
     <Link href={href} className="flex items-center gap-2 font-display text-[19px] font-semibold tracking-tight text-ink">
       <LogoMark />
-      FraudFence<span className="text-ink-mute">AI</span>
+      <span>FraudFence<span className="text-ink-mute">AI</span></span>
     </Link>
   );
 }

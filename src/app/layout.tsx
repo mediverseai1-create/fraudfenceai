@@ -7,9 +7,9 @@ const display = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-display",
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
-  title: { default: "FraudFenceAI — Fraud and AML risk platform", template: "%s · FraudFenceAI" },
+  title: { default: "FraudFenceAI: The AI-native fraud and AML platform", template: "%s · FraudFenceAI" },
   description:
-    "Screen transactions in real time, rate customer risk, check watchlists and work cases with an AI investigator. Built for lean risk teams.",
+    "FraudFenceAI scores every transaction, investigates every flagged case with AI, and gives risk teams audit-ready decisions in seconds.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

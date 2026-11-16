@@ -71,7 +71,7 @@ export default async function Overview() {
             <thead className="border-y border-line bg-mist/50"><tr><th className="th">Customer</th><th className="th">Amount</th><th className="th">Score</th><th className="th">Decision</th><th className="th">When</th></tr></thead>
             <tbody className="divide-y divide-line">
               {flagged.map((t) => (
-                <tr key={t.id}><td className="td">{t.customer_ref ?? "—"}</td><td className="td">{money(t.amount, t.currency)}</td><td className="td">{t.risk_score}</td><td className="td"><DecisionBadge decision={t.decision} /></td><td className="td text-ink-mute">{when(t.created_at)}</td></tr>
+                <tr key={t.id}><td className="td">{t.customer_ref ?? "-"}</td><td className="td">{money(t.amount, t.currency)}</td><td className="td">{t.risk_score}</td><td className="td"><DecisionBadge decision={t.decision} /></td><td className="td text-ink-mute">{when(t.created_at)}</td></tr>
               ))}
             </tbody>
           </table>
