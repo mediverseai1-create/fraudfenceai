@@ -3,6 +3,8 @@ import { Logo } from "./logo";
 
 const nav = [
   { href: "/products", label: "Platform" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/security", label: "Security" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
@@ -18,17 +20,17 @@ export function SiteHeader() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
           <div className="flex items-center gap-10">
             <Logo />
-            <nav className="hidden gap-7 md:flex" aria-label="Main">
+            <nav className="hidden gap-7 lg:flex" aria-label="Main">
               {nav.map((n) => (
                 <Link key={n.href} href={n.href} className="text-sm text-ink-soft hover:text-ink">{n.label}</Link>
               ))}
             </nav>
           </div>
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <Link href="/login" className="btn btn-sm text-ink-soft hover:text-ink">Log in</Link>
             <Link href="/signup" className="btn-dark btn-sm">Sign up</Link>
           </div>
-          <details className="group relative md:hidden">
+          <details className="group relative lg:hidden">
             <summary className="btn-light btn-sm cursor-pointer list-none" aria-label="Open menu">Menu</summary>
             <div className="card absolute right-0 top-11 w-56 space-y-1 p-2">
               {nav.map((n) => (
@@ -58,6 +60,8 @@ export function SiteFooter() {
           <p className="mb-3 text-xs font-medium uppercase tracking-wide text-ink-mute">Product</p>
           <ul className="space-y-2 text-sm">
             <li><Link href="/products" className="hover:underline">Platform</Link></li>
+            <li><Link href="/solutions" className="hover:underline">Solutions</Link></li>
+            <li><Link href="/security" className="hover:underline">Security</Link></li>
             <li><Link href="/pricing" className="hover:underline">Pricing</Link></li>
           </ul>
         </div>
@@ -65,6 +69,8 @@ export function SiteFooter() {
           <p className="mb-3 text-xs font-medium uppercase tracking-wide text-ink-mute">Company</p>
           <ul className="space-y-2 text-sm">
             <li><Link href="/about" className="hover:underline">About</Link></li>
+            <li><Link href="/privacy" className="hover:underline">Privacy</Link></li>
+            <li><Link href="/terms" className="hover:underline">Terms</Link></li>
             <li><Link href="/login" className="hover:underline">Log in</Link></li>
             <li><Link href="/signup" className="hover:underline">Sign up</Link></li>
           </ul>

@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const display = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
@@ -12,9 +8,18 @@ export const metadata: Metadata = {
     "FraudFenceAI scores every transaction, investigates every flagged case with AI, and gives risk teams audit-ready decisions in seconds.",
 };
 
+// Fonts load at runtime from Google Fonts, so a font-network issue can never fail the build.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${display.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
